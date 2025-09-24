@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Basic</title>
+</head>
+
+<body>
+
+    <script>
+        // using var
+        var name = "Shehram";
+        console.log(name);
+
+        // using let
+        let age = 20;
+        console.log(age);
+
+        // using const
+        const country = "Pakistan";
+        console.log(country);
+
+
+        // array
+        let fruits = ["Apple", "Mango", "Banana"];
+
+        // accessing array elements
+        console.log(fruits[0]);
+        console.log(fruits[1]);
+        console.log(fruits[2]);
+
+        // adding a new element in array
+        fruits.push("Orange");
+
+        // updated array
+        console.log(fruits);
+
+
+        // object
+        let student = {
+            name: "Sjhehram",
+            age: 22,
+            country: "Pakistan",
+            isActive: true
+        };
+
+        // accessing object properties
+        console.log(student.name);
+        console.log(student.age);
+        console.log(student.country);
+        console.log(student.isActive);
+
+        // updating a property
+        student.age = 21;
+
+        // adding a new property
+        student.grade = "A";
+
+        // updated object
+        console.log(student);
+
+
+        // Function Declaration
+        function add(a, b) {
+            return a + b;
+        }
+        console.log("Declaration:", add(5, 3));
+
+        // Function Expression
+        const multiply = function (a, b) {
+            return a * b;
+        };
+        console.log("Expression:", multiply(5, 3));
+
+        // divide
+        const divide = function (a, b) {
+            return a / b;
+        };
+        console.log("answer is :", divide(5, 10));
+
+        // Arrow Function
+        const subtract = (a, b) => {
+            return a - b;
+        };
+        console.log("Arrow:", subtract(5, 3));
+
+        // Non-Parameterized Function 
+        function sayHello() {
+            console.log("Hello, Welcome Shehram!");
+        }
+        sayHello();
+
+
+        // Parameterized Function
+        function greet(name) {
+            console.log("Hello, " + name + "!");
+        }
+        greet("Shehram");
+
+        // check number is even or odd
+        function checkEvenOdd(number) {
+            if (number % 2 === 0) {
+                return number + " is Even";
+            }
+            else {
+                return number + " is Odd";
+            }
+        }
+        console.log(checkEvenOdd(10));
+
+        // finf minimun number
+        function findMinimum(a, b) {
+            if (a < b) {
+                return a;
+            } else {
+                return b;
+            }
+        }
+        console.log(findMinimum(10, 20));
+
+
+        // fing grades 
+        function getGrade(marks) {
+            if (marks >= 90 && marks <= 100) {
+                return "A";
+            } else if (marks >= 80) {
+                return "B";
+            } else if (marks >= 70) {
+                return "C";
+            } else if (marks >= 60) {
+                return "D";
+            } else {
+                return "F";
+            }
+        }
+
+        console.log(getGrade(95));
+
+
+        // Find minimum 
+        function findMinNumber(arr) {
+            let min = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] < min) {
+                    min = arr[i];
+                }
+            }
+            return min;
+        }
+
+        // Find maximum 
+        function findMaxNumber(arr) {
+            let max = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+
+        let numbers = [12, 45, 7, 23, 89, 34, 56, 2, 78, 15];
+
+        console.log("Minimum number is:", findMinNumber(numbers));
+        console.log("Maximum number is:", findMaxNumber(numbers));
+
+    </script>
+</body>
+
+</html>

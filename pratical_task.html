@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Fundamentals</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            padding: 30px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+
+        .box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h3 {
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px 0;
+            width: 200px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #74ebd5;
+            box-shadow: 0 0 6px rgba(116, 235, 213, 0.6);
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-left: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #74ebd5;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #4fc3c9;
+            color: white;
+        }
+
+        .result {
+            margin-top: 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #2c3e50;
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>✨ JavaScript Fundamentals ✨</h1>
+
+    <div class="box">
+        <h3>➖ Subtract</h3>
+        <input type="number" id="sub1" placeholder="Enter number">
+        <input type="number" id="sub2" placeholder="Enter number">
+        <button onclick="subtractUI()">Subtract</button>
+        <div id="subResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>➗ Divide</h3>
+        <input type="number" id="div1" placeholder="Enter number">
+        <input type="number" id="div2" placeholder="Enter number">
+        <button onclick="divideUI()">Divide</button>
+        <div id="divResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>🔢 Check Even or Odd</h3>
+        <input type="number" id="evenOddNum" placeholder="Enter number">
+        <button onclick="checkEvenOddUI()">Check</button>
+        <div id="evenOddResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>⬇️ Find Minimum (2 Numbers)</h3>
+        <input type="number" id="min1" placeholder="Enter number">
+        <input type="number" id="min2" placeholder="Enter number">
+        <button onclick="findMinUI()">Find Min</button>
+        <div id="minResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>📘 Calculate Grade</h3>
+        <input type="number" id="marks" placeholder="Enter marks">
+        <button onclick="getGradeUI()">Get Grade</button>
+        <div id="gradeResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>📊 Find Minimum & Maximum (Array)</h3>
+        <input type="text" id="arrayInput" placeholder="Enter numbers (e.g. 12 45 78 or 12,45,78)">
+        <button onclick="findMinMaxUI()">Find</button>
+        <div id="arrayResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>🧮 Formula: (a - b)² = a² - 2ab + b²</h3>
+        <input type="number" id="f1" placeholder="Enter a">
+        <input type="number" id="f2" placeholder="Enter b">
+        <button onclick="formulaUI()">Calculate</button>
+        <div id="formulaResult" class="result"></div>
+    </div>
+
+    <script>
+        function subtractUI() {
+            let a = parseFloat(document.getElementById("sub1").value);
+            let b = parseFloat(document.getElementById("sub2").value);
+            let result = a - b;
+            document.getElementById("subResult").innerText = "Subtraction: " + result;
+        }
+
+        function divideUI() {
+            let a = parseFloat(document.getElementById("div1").value);
+            let b = parseFloat(document.getElementById("div2").value);
+            let result = (b !== 0) ? a / b : "❌ Cannot divide by 0";
+            document.getElementById("divResult").innerText = "Division: " + result;
+        }
+
+        function checkEvenOddUI() {
+            let number = parseInt(document.getElementById("evenOddNum").value);
+            let result = (number % 2 === 0) ? "✅ Even" : "❌ Odd";
+            document.getElementById("evenOddResult").innerText = result;
+        }
+
+        function findMinUI() {
+            let a = parseFloat(document.getElementById("min1").value);
+            let b = parseFloat(document.getElementById("min2").value);
+            let min = (a < b) ? a : b;
+            document.getElementById("minResult").innerText = "Minimum: " + min;
+        }
+
+        function getGrade(marks) {
+            if (marks >= 90 && marks <= 100) return "A";
+            else if (marks >= 80) return "B";
+            else if (marks >= 70) return "C";
+            else if (marks >= 60) return "D";
+            else return "F";
+        }
+        function getGradeUI() {
+            let marks = parseInt(document.getElementById("marks").value);
+            let grade = getGrade(marks);
+            document.getElementById("gradeResult").innerText = "Grade: " + grade;
+        }
+
+        function findMinNumber(arr) {
+            let min = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] < min) {
+                    min = arr[i];
+                }
+            }
+            return min;
+        }
+
+        function findMaxNumber(arr) {
+            let max = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+
+        function findMinMaxUI() {
+            let input = document.getElementById("arrayInput").value;
+
+            let arr = input
+                .trim()
+                .split(/[\s,;]+/)
+                .map(num => parseFloat(num))
+                .filter(n => !isNaN(n));
+
+            let min = findMinNumber(arr);
+            let max = findMaxNumber(arr);
+
+            document.getElementById("arrayResult").innerText = `✅ Minimum: ${min}, Maximum: ${max}`;
+        }
+
+        function formula(a, b) {
+            return (a * a) - (2 * a * b) + (b * b);
+        }
+
+        function formulaUI() {
+            let a = parseFloat(document.getElementById("f1").value);
+            let b = parseFloat(document.getElementById("f2").value);
+            let result = formula(a, b);
+            document.getElementById("formulaResult").innerText = `(a - b)² = ${result}`;
+        }
+    </script>
+</body>
+
+</html>
