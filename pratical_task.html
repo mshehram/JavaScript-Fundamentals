@@ -221,6 +221,23 @@
         <div id="primeResult" class="result"></div>
     </div>
 
+    <div class="box">
+        <h3>🔢 Reverse a Number</h3>
+        <input type="number" id="reverseNumInput" placeholder="Enter number">
+        <button onclick="reverseNumberUI()">Reverse Number</button>
+        <div id="reverseNumResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>💰 Simple Interest Calculator</h3>
+        <input type="number" id="p" placeholder="Enter P">
+        <input type="number" id="r" placeholder="Enter R">
+        <input type="number" id="t" placeholder="Enter T">
+        <button onclick="simpleInterestUI()">Calculate</button>
+        <div id="siResult" class="result"></div>
+    </div>
+
+
     <script>
         function greet(name) {
             return "Hello, " + name + "! 👋";
@@ -475,11 +492,58 @@
             while (num !== 0) {
                 let digit = num % 10;
                 reversed = reversed * 10 + digit;
+                num = Math.floor(num / 10);
             }
             return reversed;
         }
-        console.log(reverseNumber(1234));
 
+        function reverseNumberUI() {
+            let num = parseInt(document.getElementById("reverseNumInput").value);
+            let result;
+            if (isNaN(num)) {
+                result = "⚠️ Please enter a valid number";
+            } else {
+                result = "Reversed Number: " + reverseNumber(num);
+            }
+            document.getElementById("reverseNumResult").innerText = result;
+        }
+
+        function simpleInterest(P, R, T) {
+            return (P * R * T) / 100;
+        }
+
+        function simpleInterestUI() {
+            let P = parseFloat(document.getElementById("p").value);
+            let R = parseFloat(document.getElementById("r").value);
+            let T = parseFloat(document.getElementById("t").value);
+            let result;
+            if (isNaN(P) || isNaN(R) || isNaN(T)) {
+                result = "⚠️ Please enter valid numbers!";
+            } else {
+                result = "Simple Interest: " + simpleInterest(P, R, T);
+            }
+
+            document.getElementById("siResult").innerText = result;
+        }
+
+        function factorial(n) {
+            if (n < 0) return;
+
+            let result = 1;
+            for (let i = 1; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        }
+        console.log(factorial(5));
+
+
+        function isPalindrome(word) {
+            word = word.toLowerCase();
+            let reversed = word.split("").reverse().join("");
+            return word === reversed;
+        }
+        console.log(isPalindrome("madam"));
     </script>
 </body>
 
