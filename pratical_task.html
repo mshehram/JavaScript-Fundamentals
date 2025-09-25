@@ -80,6 +80,7 @@
             background: #f1f1f1;
             padding: 10px;
             border-radius: 8px;
+            white-space: pre-line;
         }
     </style>
 </head>
@@ -102,6 +103,23 @@
         <input type="number" id="div2" placeholder="Enter number">
         <button onclick="divideUI()">Divide</button>
         <div id="divResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>✖️ Multiply</h3>
+        <input type="number" id="mul1" placeholder="Enter number">
+        <input type="number" id="mul2" placeholder="Enter number">
+        <button onclick="multiplyUI()">Multiply</button>
+        <div id="mulResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>🔝 Find Largest (3 Numbers)</h3>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
+        <input type="number" id="num3" placeholder="Enter third number">
+        <button onclick="findLargestUI()">Find Largest</button>
+        <div id="largestResult" class="result"></div>
     </div>
 
     <div class="box">
@@ -141,6 +159,32 @@
         <div id="formulaResult" class="result"></div>
     </div>
 
+    <div class="box">
+        <h3>🧮 Cube then Add 10 (Composite Function)</h3>
+        <input type="number" id="compositeNum" placeholder="Enter number">
+        <button onclick="cubeThenAddTenUI()">Calculate</button>
+        <div id="compositeResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>➕ Sum from 1 to 40</h3>
+        <button onclick="showSumUI()">Show Sum</button>
+        <div id="sumResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>✖️ Multiplication Table of 5</h3>
+        <button onclick="showTableUI()">Show Table</button>
+        <div id="tableResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>🔄 Reverse an Array</h3>
+        <input type="text" id="reverseInput" placeholder="Enter numbers e.g. 1,2,3,4">
+        <button onclick="reverseUI()">Reverse</button>
+        <div id="reverseResult" class="result"></div>
+    </div>
+
     <script>
         function subtractUI() {
             let a = parseFloat(document.getElementById("sub1").value);
@@ -154,6 +198,25 @@
             let b = parseFloat(document.getElementById("div2").value);
             let result = (b !== 0) ? a / b : "❌ Cannot divide by 0";
             document.getElementById("divResult").innerText = "Division: " + result;
+        }
+
+        function multiplyUI() {
+            let a = parseFloat(document.getElementById("mul1").value);
+            let b = parseFloat(document.getElementById("mul2").value);
+            let result = a * b;
+            document.getElementById("mulResult").innerText = "Multiplication: " + result;
+        }
+
+        function findLargestUI() {
+            let a = parseFloat(document.getElementById("num1").value);
+            let b = parseFloat(document.getElementById("num2").value);
+            let c = parseFloat(document.getElementById("num3").value);
+
+            let largest = a;
+            if (b > largest) largest = b;
+            if (c > largest) largest = c;
+
+            document.getElementById("largestResult").innerText = "Largest Number: " + largest;
         }
 
         function checkEvenOddUI() {
@@ -170,12 +233,18 @@
         }
 
         function getGrade(marks) {
-            if (marks >= 90 && marks <= 100) return "A";
-            else if (marks >= 80) return "B";
-            else if (marks >= 70) return "C";
-            else if (marks >= 60) return "D";
-            else return "F";
+            if (marks >= 90 && marks <= 100)
+                return "A";
+            else if (marks >= 80)
+                return "B";
+            else if (marks >= 70)
+                return "C";
+            else if (marks >= 60)
+                return "D";
+            else
+                return "F";
         }
+
         function getGradeUI() {
             let marks = parseInt(document.getElementById("marks").value);
             let grade = getGrade(marks);
@@ -211,6 +280,11 @@
                 .map(num => parseFloat(num))
                 .filter(n => !isNaN(n));
 
+            if (arr.length === 0) {
+                document.getElementById("arrayResult").innerText = "⚠️ Please enter valid numbers!";
+                return;
+            }
+
             let min = findMinNumber(arr);
             let max = findMaxNumber(arr);
 
@@ -226,6 +300,74 @@
             let b = parseFloat(document.getElementById("f2").value);
             let result = formula(a, b);
             document.getElementById("formulaResult").innerText = `(a - b)² = ${result}`;
+        }
+
+        function cube(num) {
+            return num ** 3;
+        }
+
+        function addTen(num) {
+            return num + 10;
+        }
+
+        function cubeThenAddTen(num) {
+            return addTen(cube(num));
+        }
+
+        function cubeThenAddTenUI() {
+            let num = parseFloat(document.getElementById("compositeNum").value);
+            let result = cubeThenAddTen(num);
+            document.getElementById("compositeResult").innerText = `Cube → Add 10: ${result}`;
+        }
+
+        function showSumUI() {
+            let sum = 0;
+            for (let i = 1; i <= 40; i++) {
+                sum += i;
+            }
+            document.getElementById("sumResult").innerText = "Sum from 1 to 40 is: " + sum;
+        }
+
+        function showTableUI() {
+            let table = "";
+            for (let i = 1; i <= 10; i++) {
+                table += `5 x ${i} = ${5 * i}\n`;
+            }
+            document.getElementById("tableResult").innerText = table;
+        }
+
+
+        // function reverse(array) {
+        //   let output = [];
+        // let len = array.length;
+        // for (let i = 0; i < len; i++) {
+        // output.push(array.pop());
+        // }
+        // return output;
+        // }
+
+        // console.log(reverse([1, 2, 3, 4, 5, 6, 7]));
+
+
+        function reverseUI() {
+            let input = document.getElementById("reverseInput").value;
+            let arr = input
+                .split(/[\s,]+/) 
+                .map(num => parseFloat(num))
+                .filter(n => !isNaN(n));
+
+                
+            function reverse(array) {
+                let output = [];
+                let len = array.length;
+                for (let i = 0; i < len; i++) {
+                    output.push(array.pop());
+                }
+                return output;
+            }
+
+            let reversedArray = reverse(arr);
+            document.getElementById("reverseResult").innerText = "Reversed Array: " + reversedArray.join(", ");
         }
     </script>
 </body>
