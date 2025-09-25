@@ -86,8 +86,37 @@
 </head>
 
 <body>
-
     <h1>✨ JavaScript Fundamentals ✨</h1>
+
+    <div class="box">
+        <h3>👋 Greeting Message</h3>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="greetUI()">Greet</button>
+        <div id="greetResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>🔲 Square a Number</h3>
+        <input type="number" id="squareNum" placeholder="Enter number">
+        <button onclick="squareUI()">Find Square</button>
+        <div id="squareResult" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>➕ Sum of Two Numbers</h3>
+        <input type="number" id="sum1" placeholder="Enter number">
+        <input type="number" id="sum2" placeholder="Enter number">
+        <button onclick="sumUI()">Find Sum</button>
+        <div id="sumResultNew" class="result"></div>
+    </div>
+
+    <div class="box">
+        <h3>🔝 Larger Number (2 Numbers)</h3>
+        <input type="number" id="larger1" placeholder="Enter number">
+        <input type="number" id="larger2" placeholder="Enter number">
+        <button onclick="largerUI()">Find Larger</button>
+        <div id="largerResultNew" class="result"></div>
+    </div>
 
     <div class="box">
         <h3>➖ Subtract</h3>
@@ -185,7 +214,56 @@
         <div id="reverseResult" class="result"></div>
     </div>
 
+    <div class="box">
+        <h3>🔍 Prime Number Check</h3>
+        <input type="number" id="primeNum" placeholder="Enter number">
+        <button onclick="primeUI()">Check Prime</button>
+        <div id="primeResult" class="result"></div>
+    </div>
+
     <script>
+        function greet(name) {
+            return "Hello, " + name + "! 👋";
+        }
+
+        function greetUI() {
+            let name = document.getElementById("nameInput").value.trim();
+            let result = name ? greet(name) : "⚠️ Please enter a name";
+            document.getElementById("greetResult").innerText = result;
+        }
+
+        function square(num) {
+            return num * num;
+        }
+
+        function squareUI() {
+            let num = parseFloat(document.getElementById("squareNum").value);
+            let result = !isNaN(num) ? square(num) : "⚠️ Enter a valid number";
+            document.getElementById("squareResult").innerText = "Square: " + result;
+        }
+
+        function sum(a, b) {
+            return a + b;
+        }
+
+        function sumUI() {
+            let a = parseFloat(document.getElementById("sum1").value);
+            let b = parseFloat(document.getElementById("sum2").value);
+            let result = (!isNaN(a) && !isNaN(b)) ? sum(a, b) : "⚠️ Enter valid numbers";
+            document.getElementById("sumResultNew").innerText = "Sum: " + result;
+        }
+
+        function larger(a, b) {
+            return a > b ? a : b;
+        }
+
+        function largerUI() {
+            let a = parseFloat(document.getElementById("larger1").value);
+            let b = parseFloat(document.getElementById("larger2").value);
+            let result = (!isNaN(a) && !isNaN(b)) ? larger(a, b) : "⚠️ Enter valid numbers";
+            document.getElementById("largerResultNew").innerText = "Larger Number: " + result;
+        }
+
         function subtractUI() {
             let a = parseFloat(document.getElementById("sub1").value);
             let b = parseFloat(document.getElementById("sub2").value);
@@ -352,11 +430,11 @@
         function reverseUI() {
             let input = document.getElementById("reverseInput").value;
             let arr = input
-                .split(/[\s,]+/) 
+                .split(/[\s,]+/)
                 .map(num => parseFloat(num))
                 .filter(n => !isNaN(n));
 
-                
+
             function reverse(array) {
                 let output = [];
                 let len = array.length;
@@ -369,6 +447,39 @@
             let reversedArray = reverse(arr);
             document.getElementById("reverseResult").innerText = "Reversed Array: " + reversedArray.join(", ");
         }
+
+
+        function isPrime(num) {
+            if (num <= 1) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function primeUI() {
+            let num = parseInt(document.getElementById("primeNum").value);
+            let result;
+            if (isNaN(num)) {
+                result = "⚠️ Enter a valid number";
+            }
+            else {
+                result = isPrime(num) ? num + " is a Prime Number ✅" : num + " is NOT a Prime Number ❌";
+            }
+            document.getElementById("primeResult").innerText = result;
+        }
+
+
+        function reverseNumber(num) {
+            let reversed = 0;
+            while (num !== 0) {
+                let digit = num % 10;
+                reversed = reversed * 10 + digit;
+            }
+            return reversed;
+        }
+        console.log(reverseNumber(1234));
+
     </script>
 </body>
 
